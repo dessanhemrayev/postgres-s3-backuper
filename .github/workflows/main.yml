@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Backup_yandex_object_Storage
 
 # Controls when the workflow will run
 on:
