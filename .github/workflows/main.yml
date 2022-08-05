@@ -27,9 +27,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install requirements
-        run: | 
+        run: |
+            python -m venv .venv
+            . .venv/bin/activate
+            python -m pip install boto3
             pip install -r requirements.txt
-            aws configure
 
       - name: Run script
         run: python backup.py
