@@ -23,9 +23,9 @@ DB_FILENAME = "/tmp/backup_db.sql.gz.enc"
 
 MASTER_PASSWORD = 'mobile'
 ODOO_DATABASE_NAME = 'service_app'
-ODOO_DATABASE_FILE_NAME = 'backup_service_app' 
+ODOO_DATABASE_FILE_NAME = 'backup_service_app.zip' 
 TIME_ZONE = os.getenv("TIME_ZONE", "Europe/Moscow")
-S3_BUCKET_NAME = "YCOviGAVKowRNkBt9V6vAek5sSQ_xUaYabOhffGp"
+S3_BUCKET_NAME = "backup-dessan"
 
 def say_hello():
     print(colored("Hi! This tool will dump PostgreSQL database, compress \n"
@@ -55,7 +55,7 @@ def dump_database():
     -F "master_pwd={MASTER_PASSWORD}" \
     -F "name={ODOO_DATABASE_NAME}" \
     -F "backup_format=zip" \
-    -o {ODOO_DATABASE_FILE_NAME}.$(date +%F).zip \
+    -o {ODOO_DATABASE_FILE_NAME} \
     http://storyka.ru/web/database/backup'
     ))
     if dump_db_operation_status != 0:
