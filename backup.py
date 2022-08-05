@@ -25,6 +25,7 @@ MASTER_PASSWORD = 'mobile'
 ODOO_DATABASE_NAME = 'service_app'
 ODOO_DATABASE_FILE_NAME = 'backup_service_app' 
 TIME_ZONE = os.getenv("TIME_ZONE", "Europe/Moscow")
+S3_BUCKET_NAME = "YCOviGAVKowRNkBt9V6vAek5sSQ_xUaYabOhffGp"
 
 def say_hello():
     print(colored("Hi! This tool will dump PostgreSQL database, compress \n"
@@ -88,7 +89,7 @@ def remove_temp_files():
 
 if __name__ == "__main__":
     say_hello()
-    check_key_file_exists()
+    # check_key_file_exists()
     dump_database()
     upload_dump_to_s3()
     remove_temp_files()
