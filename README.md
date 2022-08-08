@@ -25,4 +25,7 @@ S3_BUCKET_NAME=your_s3_bucket  \
 TIME_ZONE=Europe/Moscow \
 python3 backup.py
 ```
+Status of last Deployment:<br>
+<img src="https://github.com/dessanhemrayev/postgres-s3-backuper/workflows/Backup_yandex_object_Storage/badge.svg?branch=main"><br>
+
 Borrowed from the author [https://github.com/alexey-goloburdin](https://github.com/alexey-goloburdin)
