@@ -5,27 +5,25 @@ API.
 import datetime
 import os
 from pathlib import Path
-import pytz
 
-from termcolor import colored
 import boto3
+import pytz
+from termcolor import colored
 
-
-DB_HOSTNAME = os.getenv("DB_HOSTNAME", "localhost")
-DB_NAME = os.getenv("DB_NAME")
-DB_USER = os.getenv("DB_USER")
-S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME")
-BACKUP_KEY_PUB_FILE = os.getenv("BACKUP_KEY_PUB_FILE")
-
-
-DB_FILENAME = "/tmp/backup_db.sql.gz.enc"
-
-
-MASTER_PASSWORD = 'mobile'
-ODOO_DATABASE_NAME = 'service_app'
-ODOO_DATABASE_FILE_NAME = 'backup_service_app.zip' 
-TIME_ZONE = os.getenv("TIME_ZONE", "Europe/Moscow")
-S3_BUCKET_NAME = "backup-dessan"
+from config import (
+    BACKUP_API_URL,
+    BACKUP_KEY_PUB_FILE,
+    DB_FILENAME,
+    DB_HOSTNAME,
+    DB_NAME,
+    DB_USER,
+    MASTER_PASSWORD,
+    ODOO_DATABASE_NAME,
+    ODOO_DATABASE_FILE_NAME,
+    S3_BUCKET_NAME,
+    S3_ENDPOINT_URL,
+    TIME_ZONE,
+)
 
 def say_hello():
     print(colored("Hi! This tool will dump PostgreSQL database, compress \n"
@@ -56,7 +54,7 @@ def dump_database():
     -F "name={ODOO_DATABASE_NAME}" \
     -F "backup_format=zip" \
     -o {ODOO_DATABASE_FILE_NAME} \
-    http://storyka.ru/web/database/backup'
+    {BACKUP_API_URL}'
     ))
     if dump_db_operation_status != 0:
         exit(f"\U00002757 Dump database command exits with status "
@@ -68,7 +66,7 @@ def get_s3_instance():
     session = boto3.session.Session()
     return session.client(
         service_name='s3',
-        endpoint_url='https://storage.yandexcloud.net'
+        endpoint_url=S3_ENDPOINT_URL,
     )
 
 
