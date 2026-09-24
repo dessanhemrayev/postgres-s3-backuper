@@ -1,7 +1,7 @@
 Backup and restore PostgreSQL database with Yandex Object Storage (or any S3-compatible storage)
 ===
 
-There are two Python scripts: `backup.py`. This script one creates
+There are two Python scripts: `main.py`. This script one creates
 PostgreSQL dump, zip and then upload to Yandex Object
 Storage (or any S3-compatible storage). 
 
@@ -23,7 +23,7 @@ DB_NAME=your_database  \
 DB_USER=your_db_user  \
 S3_BUCKET_NAME=your_s3_bucket  \
 TIME_ZONE=Europe/Moscow \
-python3 backup.py
+python3 main.py
 ```
 Status of last Deployment:<br>
 <img src="https://github.com/dessanhemrayev/postgres-s3-backuper/workflows/Backup_yandex_object_Storage/badge.svg?branch=main"><br>
